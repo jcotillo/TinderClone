@@ -37,6 +37,13 @@ angular.module('songhop.services', [])
      o.queue = o.queue.concat(data);
    });
  }
-
+ o.nextSong = function() {
+  // The shift() method removes the first element from an array and returns that element
+   o.queue.shift();
+   // low on the queue? lets fill it up
+    if (o.queue.length <= 3) {
+      o.getNextSongs();
+    }
+ }
   return o;
 })

@@ -1,10 +1,9 @@
 angular.module('songhop.controllers', ['ionic', 'songhop.services'])
 
-
 /*
 Controller for the discover page
 */
-.controller('DiscoverCtrl', function($scope, $timeout, User) {
+.controller('DiscoverCtrl', function($scope, $timeout, User, Recommendations) {
   // get the first 10 song recommendations
   Recommendations.getNextSongs()
     .then(function() {
@@ -15,20 +14,23 @@ Controller for the discover page
   $scope.sendFeedback = function (bool) {
 
     if (bool) User.addSongToFavorites($scope.currentSong);
-    // set variable for the correct animation sequence
      $scope.currentSong.rated = bool;
      $scope.currentSong.hide = true;
 
+     // prepare the next song and remove the one rated..
+     Recommendations.nextSong();
+
      $timeout(function() {
      // $timeout to allow animation to complete before changing to next song
-     // set the current song to one of our three songs
-     var randomSong = Math.round(Math.random() * ($scope.songs.length - 1));
-
-     // update current song in scope
-     $scope.currentSong = angular.copy($scope.songs[randomSong]);
-
+     $scope.currentSong = Recommendations.queue[0];
    }, 250);
-
+   $scope.nextAlbumImg = function() {
+     // if there isn't an album image available next, return empty string.
+     if (Recommendations.queue.length > 1) {
+       return Recommendations.queue[1].image_large;
+     }
+     return ' ';
+   };
  };
 })
 
