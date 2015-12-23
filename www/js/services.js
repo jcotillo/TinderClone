@@ -1,4 +1,5 @@
 angular.module('songhop.services', [])
+// TODO wtf is a factory? might be covered in the codeschool class but forgot...
 .factory('User', function() {
 
   var o = {
@@ -36,6 +37,6 @@ angular.module('songhop.services', [])
      o.queue = o.queue.concat(data);
    });
  }
- 
+
   return o;
 })
