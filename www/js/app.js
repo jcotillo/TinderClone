@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('songhop', ['ionic', 'songhop.controllers'])
+angular.module('otakufinder', ['ionic', 'otakufinder.controllers'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -15,7 +15,7 @@ angular.module('songhop', ['ionic', 'songhop.controllers'])
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
-    
+
 
   });
 })
@@ -61,9 +61,12 @@ angular.module('songhop', ['ionic', 'songhop.controllers'])
     })
   // If none of the above states are matched, use this as the fallback:
   $urlRouterProvider.otherwise('/tab/discover');
-
 })
 
+.config(function($sceDelegateProvider)
+{
+    $sceDelegateProvider.resourceUrlWhitelist(['self', new RegExp('^(http[s]?):\/\/(w{3}.)?youtube\.com/.+$')]);
+})
 
 .constant('SERVER', {
   // Local server
