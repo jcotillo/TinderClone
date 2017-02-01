@@ -4,14 +4,12 @@ angular.module('otakufinder.controllers', ['ionic', 'otakufinder.services'])
 /*
 Controller for the discover page
 */
-.controller('DiscoverCtrl', function($scope, $timeout, User) {
-  $scope.animes = [{
-    "title": "Dungeon ni Deai wo Motomeru no wa Machigatteiru Darou ka Gaiden: Sword Oratoria",
-    "video": "https://www.youtube.com/embed/_25Ar-rS-C4",
-    "description": "n/a"
-  }]
+.controller('DiscoverCtrl', function($scope, $timeout, User, Recommendations) {
 
-  $scope.currentAnime = angular.copy($scope.animes[0])
+  Recommendations.getNextAnimes().then(function(){
+    $scope.currentAnime = Recommendations.queue[0];
+  });
+
   $scope.sendFeedback = function(bool) {
     // first, add to favorites if they favorited
     if (bool) User.addAnimeToFavorites($scope.currentAnime);
@@ -20,15 +18,13 @@ Controller for the discover page
     $scope.currentAnime.rated = bool;
     $scope.currentAnime.hide = true;
 
+    // prepare the next Anime
+    Recommendations.nextAnime();
+
     $timeout(function() {
-     // $timeout to allow animation to complete before changing to next anime
-     // set the current anime to one of our three songs
-     var randomAnime = Math.round(Math.random() * ($scope.animes.length - 1));
-
-     // update current anime in scope
-     $scope.currentAnime = angular.copy($scope.animes[randomSong]);
-
-   }, 250);
+    // $timeout to allow animation to complete
+      $scope.currentAnime = Recommendations.queue[0];
+    }, 250);
 
 
   }

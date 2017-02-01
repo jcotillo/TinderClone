@@ -7,7 +7,7 @@
       <div class="item item-image" ng-class="{skipped: currentAnime.rated == false,
                      favorited: currentAnime.rated == true}"
           ng-show="currentAnime && !currentAnime.hide">
-        <iframe frameborder="0" src="{{ currentAnime.video }}" height="200" width="100%" allowfullscreen></iframe>
+        <iframe frameborder="0" src="{{ currentAnime.url }}" height="200" width="100%" allowfullscreen></iframe>
       </div>
 
       <div class="item">

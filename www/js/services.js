@@ -28,6 +28,7 @@ angular.module('otakufinder.services', [])
   o.getNextAnimes = function() {
    return $http({
      method: 'GET',
+     withCredentials: false,
      url: SERVER.url + '/animes'
    }).success(function(data){
      // merge data into the queue
@@ -35,5 +36,12 @@ angular.module('otakufinder.services', [])
    });
  }
 
+  o.nextAnime = function() {
+    // pop off current song
+    o.queue.shift();
+    if (o.queue.length <= 3) {
+      o.getNextAnimes();
+    }
+  }
   return o;
 });
