@@ -2,23 +2,19 @@
   <ion-content>
 
     <ion-list>
-      <ion-item class="item-avatar">
-        <img ng-src="/img/ionic.png">
-        <h2>I keep it realtime yo</h2>
-        <p>James Tamplin</p>
-      </ion-item>
-      <ion-item class="item-avatar">
-        <img ng-src="/img/ionic.png">
-        <h2>99 compiler errors</h2>
-        <p>Jake Hanford</p>
-      </ion-item>
-      <ion-item class="item-avatar">
-        <img ng-src="/img/ionic.png">
-        <h2>So many stacks they overflowin'</h2>
-        <p>Brian Gallagher</p>
+      <ion-item ng-repeat="anime in favorites" class="item-avatar">
+        <!-- TODO source images too... -->
+       <!-- <img ng-src="{{ anime.image_small }}"> -->
+       <h2>{{ anime.title }}</h2>
+       <p>{{ anime.description }}</p>
+
+        <ion-option-button class="button-assertive"
+                       ng-click="removeAnime(anime, $index)">
+          <i class="ion-minus-circled"></i>
+        </ion-option-button>
       </ion-item>
     </ion-list>
-    
+
 
   </ion-content>
 </ion-view>

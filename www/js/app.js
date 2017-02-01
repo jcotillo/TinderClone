@@ -73,5 +73,5 @@ angular.module('otakufinder', ['ionic', 'otakufinder.controllers'])
   //url: 'http://localhost:3000'
 
   // Public Heroku server
-  url: 'https://ionic-songhop.herokuapp.com'
+  url: 'https://nodeotakufinderapi.herokuapp.com/api'
 });

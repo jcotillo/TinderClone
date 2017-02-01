@@ -4,7 +4,9 @@
 
     <div class="list card current-song">
 
-      <div class="item item-image">
+      <div class="item item-image" ng-class="{skipped: currentAnime.rated == false,
+                     favorited: currentAnime.rated == true}"
+          ng-show="currentAnime && !currentAnime.hide">
         <iframe frameborder="0" src="{{ currentAnime.video }}" height="200" width="100%" allowfullscreen></iframe>
       </div>
 
@@ -15,11 +17,11 @@
 
       <div class="item tabs tabs-secondary tabs-icon-left">
         <a class="tab-item">
-          <i class="icon ion-close"></i>
+          <i class="icon ion-close" ng-click="sendFeedback(false)"></i>
           Skip
         </a>
         <a class="tab-item">
-          <i class="icon ion-heart"></i>
+          <i class="icon ion-heart" ng-click="sendFeedback(true)"></i>
           Favorite
         </a>
       </div>
