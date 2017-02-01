@@ -25,11 +25,15 @@ Controller for the discover page
     // $timeout to allow animation to complete
       $scope.currentAnime = Recommendations.queue[0];
     }, 250);
+  }
 
-
+  $scope.nextAnimeImg = function() {
+    if (Recommendations.queue.length > 1) {
+      return Recommendations.queue[1].image;
+    }
+    return '';
   }
 })
-
 
 /*
 Controller for the favorites page

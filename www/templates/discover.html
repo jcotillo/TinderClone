@@ -15,6 +15,10 @@
         <p>{{ currentAnime.description }}</p>
       </div>
 
+      <div class="img-lookahead">
+        <img ng-src="{{ nextAnimeImg() }}" />
+      </div>
+
       <div class="item tabs tabs-secondary tabs-icon-left">
         <a class="tab-item">
           <i class="icon ion-close" ng-click="sendFeedback(false)"></i>
