@@ -3,11 +3,9 @@
 
     <ion-list>
       <ion-item ng-repeat="anime in favorites" class="item-avatar">
-        <!-- TODO source images too... -->
-       <!-- <img ng-src="{{ anime.image_small }}"> -->
+       <img ng-src="{{ anime.picture }}">
        <h2>{{ anime.title }}</h2>
        <p>{{ anime.description }}</p>
-
         <ion-option-button class="button-assertive"
                        ng-click="removeAnime(anime, $index)">
           <i class="ion-minus-circled"></i>

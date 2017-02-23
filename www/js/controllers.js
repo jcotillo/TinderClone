@@ -8,6 +8,7 @@ Controller for the discover page
 
   Recommendations.getNextAnimes().then(function(){
     $scope.currentAnime = Recommendations.queue[0];
+    Recommendations.playCurrentVideo();
   });
 
   $scope.sendFeedback = function(bool) {
@@ -25,6 +26,7 @@ Controller for the discover page
     // $timeout to allow animation to complete
       $scope.currentAnime = Recommendations.queue[0];
     }, 250);
+    Recommendations.playCurrentAnime();
   }
 
   $scope.nextAnimeImg = function() {
@@ -51,5 +53,7 @@ Controller for the favorites page
 Controller for our tab bar
 */
 .controller('TabsCtrl', function($scope) {
-
+  $scope.enteringFavorites = function() {
+    Recommendations.haltVideo();
+  }
 });

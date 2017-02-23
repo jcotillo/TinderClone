@@ -70,8 +70,8 @@ angular.module('otakufinder', ['ionic', 'otakufinder.controllers'])
 
 .constant('SERVER', {
   // Local server
-  // url: 'http://localhost:3000/api'
+  url: 'http://localhost:3000/api'
 
   // Public Heroku server
-  url: 'https://nodeotakufinderapi.herokuapp.com/api'
+  // url: 'https://nodeotakufinderapi.herokuapp.com/api'
 });
