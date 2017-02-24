@@ -3,9 +3,15 @@ angular.module('otakufinder.directives',[])
   return {
     restrict: "E",
 
+    scope: {
+      height:   "@",
+      width:    "@",
+      videoid:  "@"
+    },
+
     template: '<div></div>',
 
-    link: function(scope, element, attrs) {
+    link: function(scope, element) {
       var tag = document.createElement('script');
       tag.src = "https://www.youtube.com/iframe_api";
       var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -15,9 +21,24 @@ angular.module('otakufinder.directives',[])
 
       $window.onYouTubeIframeAPIReady = function() {
         player = new YT.Player(element.children()[0], {
-          height: '390',
-          width: '640',
-          videoId: 'M7lc1UVf-VE'
+
+          playerVars: {
+            autoplay: 1,
+            controls: 1
+          },
+
+          height: scope.height,
+          width: scope.width,
+          videoId: scope.videoid
+        });
+
+        scope.$watch('videoid', function(newValue, oldValue) {
+          if (newValue == oldValue) {
+            return;
+          }
+
+          player.cueVideoById({videoId: scope.videoid});
+          player.playVideo();
         });
       };
     },

@@ -1,4 +1,4 @@
-angular.module('otakufinder.controllers', ['ionic', 'otakufinder.services'])
+angular.module('otakufinder.controllers', ['ionic', 'otakufinder.services', 'otakufinder.directives'])
 
 
 /*
@@ -8,7 +8,7 @@ Controller for the discover page
 
   Recommendations.getNextAnimes().then(function(){
     $scope.currentAnime = Recommendations.queue[0];
-    Recommendations.playCurrentVideo();
+    // Recommendations.playCurrentVideo();
   });
 
   $scope.sendFeedback = function(bool) {
@@ -26,7 +26,7 @@ Controller for the discover page
     // $timeout to allow animation to complete
       $scope.currentAnime = Recommendations.queue[0];
     }, 250);
-    Recommendations.playCurrentAnime();
+    // Recommendations.playCurrentAnime();
   }
 
   $scope.nextAnimeImg = function() {

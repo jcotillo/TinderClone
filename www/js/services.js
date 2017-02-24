@@ -26,16 +26,16 @@ angular.module('otakufinder.services', [])
   var o = {
     queue: []
   };
-  o.playCurrentVideo = function() {
-    var defer = $q.defer();
-    media = new Video(o.queue[0].url);
-    // when song loaded, resolve the promise to let controller know.
-    media.addEventListener("loadeddata", function() {
-      defer.resolve();
-    });
-    media.play();
-    return defer.promise;
-  }
+  // o.playCurrentVideo = function() {
+  //   var defer = $q.defer();
+  //   media = new Video(o.queue[0].url);
+  //   // when song loaded, resolve the promise to let controller know.
+  //   media.addEventListener("loadeddata", function() {
+  //     defer.resolve();
+  //   });
+  //   media.play();
+  //   return defer.promise;
+  // }
   // used when switching to favorites tab
   o.haltVideo = function() {
     if (media) media.pause();
